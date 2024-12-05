@@ -1,51 +1,40 @@
 import 'package:flutter/material.dart';
+import 'package:sharing_app/ui/common/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String hintText;
   final TextEditingController controller;
-  final bool isPassword;
-  final IconData? prefixIcon;
-  final IconData? suffixIcon;
-  final VoidCallback? onSuffixIconTap;
+  final String hintText;
+  final TextInputType? keyboardType;
 
   const CustomTextField({
     Key? key,
-    required this.hintText,
     required this.controller,
-    this.isPassword = false,
-    this.prefixIcon,
-    this.suffixIcon,
-    this.onSuffixIconTap,
+    required this.hintText,
+    this.keyboardType,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
-      obscureText: isPassword,
+      keyboardType: keyboardType,
+      style: const TextStyle(color: kcVeryLightGrey),
       decoration: InputDecoration(
         hintText: hintText,
-        prefixIcon: prefixIcon != null ? Icon(prefixIcon) : null,
-        suffixIcon: suffixIcon != null
-            ? GestureDetector(
-                onTap: onSuffixIconTap,
-                child: Icon(suffixIcon),
-              )
-            : null,
+        hintStyle: TextStyle(color: kcVeryLightGrey.withOpacity(0.5)),
         filled: true,
-        fillColor: Colors.grey[200],
-        contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+        fillColor: kcPrimaryColorDark.withOpacity(0.3),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20), // Rounded edges
-          borderSide: BorderSide.none, // No visible border
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: kcPrimaryColor),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: BorderSide(color: Colors.grey.shade300),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: kcPrimaryColor),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
-          borderSide: const BorderSide(color: Colors.blue, width: 2),
+          borderRadius: BorderRadius.circular(8),
+          borderSide: const BorderSide(color: kcPrimaryColor, width: 2),
         ),
       ),
     );

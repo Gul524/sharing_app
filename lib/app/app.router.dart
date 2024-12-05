@@ -5,61 +5,60 @@
 // **************************************************************************
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:flutter/material.dart' as _i2;
+import 'package:flutter/material.dart' as flutterPkj;
 import 'package:flutter/material.dart';
-import 'package:sharing_app/ui/views/home/home_view.dart' as _i5;
-import 'package:sharing_app/ui/views/startup/startup_view.dart' as _i4;
-import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i3;
+import 'package:sharing_app/ui/views/home/home_view.dart' as homePkj;
+import 'package:sharing_app/ui/views/startup/startup_view.dart' as startupPkj;
+import 'package:stacked/stacked.dart' as stackedPkj;
+import 'package:stacked_services/stacked_services.dart' as stackedServicesPkj;
 
 class Routes {
   static const homeView = '/home-view';
   static const startupView = '/startup-view';
-
+  static const adduserView = '/adduser-view';
 
   static const all = <String>{
     homeView,
     startupView,
+    adduserView,
   };
 }
 
-class StackedRouter extends _i1.RouterBase {
-  final _routes = <_i1.RouteDef>[
-    _i1.RouteDef(
+class StackedRouter extends stackedPkj.RouterBase {
+  final _routes = <stackedPkj.RouteDef>[
+    stackedPkj.RouteDef(
       Routes.homeView,
-      page: _i5.HomeView,
+      page: homePkj.HomeView,
     ),
-    _i1.RouteDef(
+    stackedPkj.RouteDef(
       Routes.startupView,
-      page: _i4.StartupView,
+      page: startupPkj.StartupView,
     ),
-    
   ];
 
-  final _pagesMap = <Type, _i1.StackedRouteFactory>{
-    _i5.HomeView: (data) {
-      return _i2.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i5.HomeView(),
+  final _pagesMap = <Type, stackedPkj.StackedRouteFactory>{
+    homePkj.HomeView: (data) {
+      return flutterPkj.MaterialPageRoute<dynamic>(
+        builder: (context) => const homePkj.HomeView(),
         settings: data,
       );
     },
-    _i4.StartupView: (data) {
-      return _i2.MaterialPageRoute<dynamic>(
-        builder: (context) => const _i4.StartupView(),
+    startupPkj.StartupView: (data) {
+      return flutterPkj.MaterialPageRoute<dynamic>(
+        builder: (context) => const startupPkj.StartupView(),
         settings: data,
       );
-      
     },
   };
 
   @override
-  List<_i1.RouteDef> get routes => _routes;
+  List<stackedPkj.RouteDef> get routes => _routes;
 
   @override
-  Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
+  Map<Type, stackedPkj.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i3.NavigationService {
+extension NavigatorStateExtension on stackedServicesPkj.NavigationService {
   Future<dynamic> navigateToHomeView([
     int? routerId,
     bool preventDuplicates = true,

@@ -11,6 +11,7 @@ dependencies:
   firebase_core: ^3.8.0
   flutter:
     sdk: flutter
+  flutter_sharing_intent: ^1.1.1
   shared_preferences: ^2.3.3
   stacked: ^3.4.0
   stacked_services: ^1.1.0

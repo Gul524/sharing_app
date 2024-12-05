@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sharing_app/models/chatmodel.dart';
 import 'package:sharing_app/services/functions.dart';
 import 'package:sharing_app/services/sharedPreferences.dart';
@@ -14,15 +13,17 @@ class StartupViewModel extends BaseViewModel {
 
   // Place anything here that needs to happen before we get into the application
   Future runStartupLogic() async {
-    final List<ChatModel?>? savedlist = SharedPreferencesService().getValue(mykey);
-    if(savedlist != null){
-      userlist = savedlist;
+    final String saveddata = SharedPreferencesService().getValue(mykey) ?? "[]";
+      final savedList = jsonDecode(saveddata);
+    for (var i in savedList) {
+      userlist.add( ChatModel.fromJson(i));
     }
-    await Future.delayed(const Duration(seconds: 3));
+    
+    await Future.delayed(const Duration(seconds: 1));
 
     // This is where you can make decisions on where your app should navigate when
     // you have custom startup logic
 
-     _navigationService.replaceWithHomeView();
+    _navigationService.replaceWithHomeView();
   }
 }
